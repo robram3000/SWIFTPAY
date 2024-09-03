@@ -1,47 +1,49 @@
 import java.util.Scanner;
 
-public class Dashboard {
+public class Dashboard  extends database{
     private double balance;
     private Scanner scanner;
 
-    
+    public enum Options {
+        DEPOSIT,
+        WITHDRAW,
+        CHECK_BALANCE,
+        EXIT
+    }
+
     public Dashboard() {
-        this.balance = 0.0; 
+        this.balance = 0.0;
         this.scanner = new Scanner(System.in);
     }
 
     public String interfaceDashboard() {
-        System.out.println("SUMMARY DASHBOARD ACCOUNT ");
-        System.out.println("Balance: $" + String.format("%.2f", balance));
-        System.out.println();
+        while (true) {
+            System.out.println("SUMMARY DASHBOARD ACCOUNT ");
+            System.out.println("Balance: $" + String.format("%.2f", balance));
+            System.out.println();
 
-        System.out.println("Choose an option:");
-        System.out.println("1. Deposit");
-        System.out.println("2. Withdraw");
-        System.out.println("3. Check Balance");
-        System.out.println("4. Exit");
+            System.out.println("Choose an option:");
+            for (Options option : Options.values()) {
+                System.out.println((option.ordinal() + 1) + ". " + option);
+            }
 
-        int choice = scanner.nextInt();
+            Options choice = Options.values()[scanner.nextInt() - 1];
 
-        switch (choice) {
-            case 1:
-                deposit();
-                break;
-            case 2:
-                withdraw();
-                break;
-            case 3:
-                checkBalance();
-                break;
-            case 4:
-                System.out.println("Goodbye!");
-                return "Goodbye!";
-            default:
-                System.out.println("Invalid choice. Please try again.");
-                return interfaceDashboard();
+            switch (choice) {
+                case DEPOSIT:
+                    deposit();
+                    break;
+                case WITHDRAW:
+                    withdraw();
+                    break;
+                case CHECK_BALANCE:
+                    checkBalance();
+                    break;
+                case EXIT:
+                    System.out.println("Goodbye!");
+                    return "Goodbye!";
+            }
         }
-
-        return "Transaction successful!";
     }
 
     private void deposit() {
