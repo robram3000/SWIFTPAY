@@ -2,7 +2,7 @@ package Database;
 import java.sql.*;
 
 public class DataBase {
-    private static final String password = "";
+    private static final String password = "root";
     private static final String username = "";
     private static final String host = "jdbc:derby://localhost:3306/Swiftpay";
 

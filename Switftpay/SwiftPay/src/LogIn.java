@@ -5,25 +5,45 @@ import Database.DataBase;
 
 public class LogIn extends DataBase {
 
-    public String userInterface() {
+    public void userInterface() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Welcome to the Login Interface");
+        System.out.println("Welcome to the Login Interface\n");
 
-        System.out.print("Enter Phone Number: ");
-        String enteredPhone = scanner.nextLine();
 
-        if (enteredPhone.length() != 11) {
-            System.out.println("Please Check your Phone number");
-            return userInterface();
+        System.out.print("Please enter something");
+        int Choose = scanner.nextInt();
+
+        switch(Choose)
+        {
+            case 1:
+                System.out.print("Enter Phone Number: ");
+                String enteredPhone = scanner.nextLine();
+
+                if (enteredPhone.length() != 11) {
+                    System.out.println("Please Check your Phone number");
+                }
+                scanner.close();
+
+                break;
+            case 2:
+                System.out.print("Register Account Bank\n");
+
+                System.out.print("Enter Your PhoneNumber: ");
+                int registerPhonenumber = scanner.nextInt();
+
+                System.out.print("Enter Your Fullname: ");
+                String registerFullname = scanner.toString();
+
+                System.out.print("Enter Your PhoneNumber");
+                int registerPin = scanner.nextInt();
+
+                break;
+            default:
+
         }
 
-        System.out.print("Enter PIN: ");
-        String enteredPin = scanner.nextLine();
 
-        scanner.close();
-
-        return numberofPin(enteredPin, enteredPhone);
     }
 
     public String numberofPin(String Pin, String Phone) {
@@ -38,7 +58,7 @@ public class LogIn extends DataBase {
             }
         } else {
             System.out.println("Please try again, the PIN must be 4 characters long.");
-            return userInterface();
+
         }
     }
 
