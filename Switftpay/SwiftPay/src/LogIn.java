@@ -7,7 +7,6 @@ public class LogIn extends DataBase {
 
     private Scanner scanner = new Scanner(System.in);
 
-    // Main user interface for login and registration
     public void userInterface() {
         System.out.println("Welcome to the Login Interface\n");
         System.out.println("1. Login");
