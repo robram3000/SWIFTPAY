@@ -28,8 +28,6 @@ public class LogIn extends DataBase {
                 System.out.println("Invalid choice. Please restart and choose 1 or 2.");
         }
     }
-
-    // Method to handle the login process
     private void handleLogin() {
         String enteredPhone = getValidPhoneNumber("Enter Phone Number (11 digits): ");
         String enteredPin = getValidPin("Enter your 4-digit PIN: ");
@@ -37,8 +35,6 @@ public class LogIn extends DataBase {
         String loginStatus = numberofPin(enteredPin, enteredPhone);
         System.out.println(loginStatus);
     }
-
-    // Method to handle user registration
     private void handleRegistration() {
         System.out.println("Register Account:");
 
@@ -47,8 +43,7 @@ public class LogIn extends DataBase {
         String registerFullName = scanner.nextLine();
         String registerPin = getValidPin("Enter Your 4-digit PIN: ");
 
-        // Store registration details (this should be connected to your database)
-        // Assuming a saveRegistration method exists in the DataBase class
+
         boolean registrationSuccess = saveRegistration(registerPhoneNumber, registerFullName, registerPin);
 
         if (registrationSuccess) {
@@ -57,8 +52,6 @@ public class LogIn extends DataBase {
             System.out.println("Registration failed. Please try again.");
         }
     }
-
-    // Validates and ensures input is a valid phone number (11 digits)
     private String getValidPhoneNumber(String prompt) {
         String phoneNumber;
         do {
@@ -71,7 +64,6 @@ public class LogIn extends DataBase {
         return phoneNumber;
     }
 
-    // Validates and ensures input is a valid PIN (4 digits)
     private String getValidPin(String prompt) {
         String pin;
         do {
@@ -84,9 +76,8 @@ public class LogIn extends DataBase {
         return pin;
     }
 
-    // Handles PIN validation and user authentication
     public String numberofPin(String pin, String phone) {
-        Authentication auth = new Authentication(phone, pin); // dynamic input
+        Authentication auth = new Authentication(phone, pin); 
         if (auth.authenticatePinUser(phone, pin)) {
             return "Login successful!";
         } else {
@@ -94,16 +85,16 @@ public class LogIn extends DataBase {
         }
     }
 
-    // Retrieves a valid choice for login or registration
+
     private int getValidChoice() {
         int choice = -1;
         while (choice != 1 && choice != 2) {
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
-                scanner.nextLine(); // consume newline left over
+                scanner.nextLine(); 
             } else {
                 System.out.println("Invalid input. Please enter 1 or 2.");
-                scanner.next(); // consume the invalid input
+                scanner.next(); 
             }
         }
         return choice;
